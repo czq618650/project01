@@ -27,14 +27,20 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
-import editor from '@/components/editor/Editor.vue'
-import Upload from '@/components/upload/Upload.vue'
+import { ref, reactive, onMounted, defineAsyncComponent } from 'vue'
+// import editor from '@/components/editor/Editor.vue'
+// import Upload from '@/components/upload/Upload.vue'
 import upload from '@/util/upload'
 // import router from '@/router'
 import { useRouter, useRoute } from 'vue-router'
 import axios from '@/util/axios.config'
 import { ElMessage } from 'element-plus'
+const editor = defineAsyncComponent(() => import('@/components/editor/Editor.vue'))
+const Upload = defineAsyncComponent(() => import('@/components/upload/Upload.vue'))
+const components = {
+  editor,
+  Upload
+}
 const router = useRouter()
 // 获取当前路由信息
 const route = useRoute()

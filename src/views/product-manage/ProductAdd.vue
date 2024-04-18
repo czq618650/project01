@@ -25,13 +25,17 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from 'vue'
-import Upload from '@/components/upload/Upload.vue'
+import { computed, reactive, ref, defineAsyncComponent } from 'vue'
+// import Upload from '@/components/upload/Upload.vue'
 import upload from '@/util/upload'
 import axios from '@/util/axios.config'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useStore } from 'vuex'
+const Upload = defineAsyncComponent(() => import('@/components/upload/Upload.vue'))
+const components = {
+  Upload
+}
 const router = useRouter()
 const store = useStore()
 // 表单对象

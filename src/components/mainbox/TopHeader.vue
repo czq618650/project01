@@ -11,7 +11,7 @@
     <div class="right">
       <span style="margin-right: 10px;">欢迎 {{store.state.UserInfo.username}} 回来</span>
       <!-- 右上角消息提示组件 -->
-      <el-badge :value="datalist.length" :max="99" class="item" v-if="store.state.UserInfo.role === 1">
+      <!-- <el-badge :value="datalist.length" :max="99" class="item" > -->
         <el-dropdown>
           <span class="el-dropdown-link">
             <el-icon :size="30" color="white">
@@ -22,35 +22,16 @@
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item @click="handleCenter">个人中心</el-dropdown-item>
-              <el-badge :value="datalist.length" :max="99" class="item" v-if="store.state.UserInfo.role === 1">
-                <el-dropdown-item @click="handleMessage" v-if="store.state.UserInfo.role === 1">消息管理</el-dropdown-item>
-              </el-badge>
-              <el-dropdown-item @click="callAdmin" v-else>联系管理员</el-dropdown-item>
+              <!-- <el-badge :value="datalist.length" :max="99" class="item" > -->
+                <el-dropdown-item @click="handleMessage">留言板</el-dropdown-item>
+              <!-- </el-badge> -->
+              <el-dropdown-item @click="callAdmin" v-if="store.state.UserInfo.role !== 1">联系管理员</el-dropdown-item>
               <el-dropdown-item @click="handleLogOut">退出</el-dropdown-item>
 
             </el-dropdown-menu>
           </template>
         </el-dropdown>
-      </el-badge>
-      <el-dropdown v-else>
-        <span class="el-dropdown-link">
-          <el-icon :size="30" color="white">
-            <User />
-          </el-icon>
-        </span>
-
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item @click="handleCenter">个人中心</el-dropdown-item>
-            <el-badge :value="datalist.length" :max="99" class="item" v-if="store.state.UserInfo.role === 1">
-              <el-dropdown-item @click="handleMessage" v-if="store.state.UserInfo.role === 1">消息管理</el-dropdown-item>
-            </el-badge>
-            <el-dropdown-item @click="callAdmin" v-else>联系管理员</el-dropdown-item>
-            <el-dropdown-item @click="handleLogOut">退出</el-dropdown-item>
-
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      <!-- </el-badge> -->
     </div>
   </el-header>
 </template>

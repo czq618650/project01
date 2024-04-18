@@ -13,9 +13,19 @@
 </template>
  
 <script setup>
-import ModelOne from './ModelOne.vue'
-import ModelTwo from './ModelTwo.vue'
-import ModelThree from './ModelThree.vue'
+import { defineAsyncComponent } from 'vue'
+// import ModelOne from './ModelOne.vue'
+// import ModelTwo from './ModelTwo.vue'
+// import ModelThree from './ModelThree.vue'
+const ModelOne = defineAsyncComponent(() => import('./ModelOne.vue'))
+const ModelTwo = defineAsyncComponent(() => import('./ModelTwo.vue'))
+const ModelThree = defineAsyncComponent(() => import('./ModelThree.vue'))
+
+const components = {
+  ModelOne,
+  ModelTwo,
+  ModelThree
+}
 </script>
 <style>
 </style>

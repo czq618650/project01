@@ -25,13 +25,17 @@
 </template>
   
   <script setup>
-import { computed, reactive, ref, onMounted } from 'vue'
-import Upload from '@/components/upload/Upload.vue'
+import { computed, reactive, ref, onMounted, defineAsyncComponent } from 'vue'
+// import Upload from '@/components/upload/Upload.vue'
 import upload from '@/util/upload'
 import axios from '@/util/axios.config'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useStore } from 'vuex'
+const Upload = defineAsyncComponent(() => import('@/components/upload/Upload.vue'))
+const components = {
+  Upload
+}
 const router = useRouter()
 const route = useRoute()
 const store = useStore()

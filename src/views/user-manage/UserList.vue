@@ -10,7 +10,7 @@
           <template #default="scope">
             <!-- scope.row表示当前行 -->
             <div v-if="scope.row.avatar">
-              <el-avatar :size="50" :src="'http://127.0.0.1:3000' + scope.row.avatar"></el-avatar>
+              <el-avatar :size="50" :src="adminurl + scope.row.avatar"></el-avatar>
             </div>
             <div v-else>
               <el-avatar :size="50" :src="'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"></el-avatar>
@@ -29,7 +29,7 @@
             <el-button size="small" @click="handleEdit(scope.row)">编辑</el-button>
             <el-popconfirm title="你确定要删除吗" confirm-button-text="确定" cancel-button-text="取消" @confirm="handleDelete( scope.row)">
               <template #reference>
-                <el-button size="small" type="danger">删除</el-button>
+                <el-button v-if="scope.row.username !== 'admin'" size="small" type="danger">删除</el-button>
               </template>
             </el-popconfirm>
           </template>
@@ -84,7 +84,7 @@
 import { ref, reactive, onMounted } from 'vue'
 import axios from '@/util/axios.config'
 import { ElMessage } from 'element-plus'
-
+import { adminurl } from '@/util/adminUrl'
 const tableData = ref([])
 const currentPage4 = ref(1)
 const pageSize4 = ref(5)

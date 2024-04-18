@@ -26,16 +26,23 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
-import editor from '@/components/editor/Editor.vue'
-import Upload from '@/components/upload/Upload.vue'
+import { ref, reactive, onMounted, defineAsyncComponent } from 'vue'
+// import editor from '@/components/editor/Editor.vue'
+// import Upload from '@/components/upload/Upload.vue'
 import { ElMessage } from 'element-plus'
 import upload from '@/util/upload'
 // import router from '@/router'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+const editor = defineAsyncComponent(() => import('@/components/editor/Editor.vue'))
+const Upload = defineAsyncComponent(() => import('@/components/upload/Upload.vue'))
+const components = {
+  editor,
+  Upload
+}
 const router = useRouter()
 const store = useStore()
+
 // 表单对象
 const newsFormRef = ref()
 // 表单元素

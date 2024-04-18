@@ -6,11 +6,11 @@
       <h3>企业门户网站管理系统</h3>
       <el-form ref="loginFormRef" :model="loginForm" status-icon :rules="loginRules" label-width="80px" class="loginForm">
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="loginForm.username" autocomplete="off" />
+          <el-input v-model="loginForm.username" autocomplete="off" placeholder="admin" />
         </el-form-item>
 
         <el-form-item label="密码" prop="password">
-          <el-input v-model="loginForm.password" type="password" autocomplete="off" />
+          <el-input v-model="loginForm.password" type="text" autocomplete="off" placeholder="123456" />
         </el-form-item>
         <!-- //@keyup="login()" -->
         <el-form-item>
@@ -37,6 +37,7 @@ const loginForm = reactive({
   username: '',
   password: ''
 })
+// console.log();
 // 表单绑定的引用对象
 const loginFormRef = ref()
 // 表单验证规则
@@ -73,10 +74,10 @@ const submitForm = () => {
   loginFormRef.value.validate(data => {
     if (data) {
       axios.post('/adminapi/user/login', loginForm).then(res => {
-        console.log(res.data)
+        console.log(res.data,"我是登录数据")
         if (res.data.ActionType === 'ok') {
-          // localStorage.setItem('token', 'chenze')
-          console.log(res.data)
+          localStorage.setItem('token', res.data.data.token)
+          console.log(res.data.data,"登录数据2")
           // 把用户信息存到vuex中方便通信
           store.commit('changeUserInfo', res.data.data)
           // 再走一遍路由配置

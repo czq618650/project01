@@ -21,7 +21,7 @@
           <span>公司产品</span>
           <el-carousel v-if="loopList.length" :interval="4000" type="card" height="200px">
             <el-carousel-item v-for="item in loopList" :key="item.ID">
-              <div :style="{ backgroundImage:`url(http:127.0.0.1:3000${item.cover})`,backgroundSize:'cover' }">
+              <div :style="{ backgroundImage:`url(${adminurl}${item.cover})`,backgroundSize:'cover' }">
                 <h3 text="2xl" justify="center">{{ item.title }}</h3>
               </div>
             </el-carousel-item>
@@ -36,12 +36,15 @@
 <script setup>
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
+import { adminurl } from '@/util/adminUrl'
 import axios from '@/util/axios.config'
 // import axios from 'axios'
 const store = useStore()
 const loopList = ref([])
 onMounted(() => {
   getData()
+  console.log(adminurl)
+  console.log(process.env.NODE_ENV)
 })
 // 获取产品数据数据
 const getData = async () => {
@@ -68,7 +71,7 @@ const getData = async () => {
   }
 }
 
-const avatarUrl = 'http://127.0.0.1:3000' + store.state.UserInfo.avatar
+const avatarUrl = adminurl + store.state.UserInfo.avatar
 
 const welcomeText = computed(() => (new Date().getHours() < 12 ? '要开心每一天' : '适当休息一下吧'))
 

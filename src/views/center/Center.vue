@@ -24,6 +24,9 @@
             <el-form-item label="用户名" prop="username">
               <el-input v-model="UserForm.username" />
             </el-form-item>
+            <el-form-item label="密码" prop="password">
+              <el-input v-model="UserForm.password" />
+            </el-form-item>
             <el-form-item label="性别" prop="gender">
               <el-select v-model="UserForm.gender" class="m-2" placeholder="Select" style="width: 100%;">
                 <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
@@ -47,10 +50,15 @@
 
 <script setup>
 import { useStore } from 'vuex'
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, defineAsyncComponent } from 'vue'
 import { ElMessage } from 'element-plus'
 import upload from '@/util/upload'
-import Upload from '@/components/upload/Upload.vue'
+// import Upload from '@/components/upload/Upload.vue'
+import { adminurl } from '@/util/adminUrl'
+const Upload = defineAsyncComponent(() => import('@/components/upload/Upload.vue'))
+const components = {
+  Upload
+}
 const store = useStore()
 
 const options = reactive([
@@ -68,12 +76,13 @@ const options = reactive([
   }
 ])
 
-const { ID, username, gender, avatar, introduction } = store.state.UserInfo
+const { ID, username, password,gender, avatar, introduction } = store.state.UserInfo
 // 表单对象
 const UserFormRef = ref()
 // 表单校验信息
 let UserForm = reactive({
   username,
+  password,
   gender,
   introduction,
   avatar,
@@ -83,13 +92,14 @@ let UserForm = reactive({
 // 校验规则
 const UserFormRules = reactive({
   username: [{ required: true, message: '请输入你的名字', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入你的密码', trigger: 'blur' }],
   gender: [{ required: true, message: '请选择性别', trigger: 'blur' }],
   introduction: [{ required: true, message: '请输入你的简介', trigger: 'blur' }],
   avatar: [{ required: true, message: '请上传你的头像', trigger: 'blur' }]
 })
 
 // 头像
-const avatarUrl = computed(() => (store.state.UserInfo.avatar ? 'http://127.0.0.1:3000' + store.state.UserInfo.avatar : store.state.UserInfo.avatar))
+const avatarUrl = computed(() => (store.state.UserInfo.avatar ? adminurl + store.state.UserInfo.avatar : store.state.UserInfo.avatar))
 
 // 每次选完文件后的上传
 const handleChange = file => {

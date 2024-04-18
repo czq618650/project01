@@ -1,28 +1,25 @@
 import { createRouter, createWebHashHistory ,createWebHistory} from 'vue-router'
-import Login from "@/views/Login.vue"
-import MainBox from "@/views/MainBox.vue"
 import RoutesConfig from "./config.js"
 import store from '@/store/index.js'
-import DataScreen from "@/views/DataScreen/DataScreen.vue"
-import Map from "@/views/DataScreen/chinaMap/Map.vue"
+
 const routes = [
 {
   path:"/login",
   name:"login",
-  component:Login,
+  component:()=>import("@/views/Login.vue"),
 },
 {
   path:"/mainbox",
   name:"mainbox",
-  component:MainBox,
+  component:()=>import("@/views/MainBox.vue"),
 },
 {
   path:"/dataScreen",
-  component:DataScreen
+  component:()=>import("@/views/DataScreen/DataScreen.vue"),
 },
 {
   path:"/map",
-  component:Map
+  component:()=>import("@/views/DataScreen/chinaMap/Map.vue"),
 }
 ]
 

@@ -11,8 +11,13 @@
 </template>
 
 <script setup>
-import TopHeader from '@/components/mainbox/TopHeader.vue'
-import SideMenu from '@/components/mainbox/SideMenu.vue'
+import { defineAsyncComponent } from 'vue'
+const TopHeader = defineAsyncComponent(() => import('@/components/mainbox/TopHeader.vue'))
+const SideMenu = defineAsyncComponent(() => import('@/components/mainbox/SideMenu.vue'))
+const components = {
+  TopHeader,
+  SideMenu
+}
 </script>
 
 <style lang="scss" scoped>

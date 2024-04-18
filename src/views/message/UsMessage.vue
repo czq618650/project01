@@ -35,6 +35,7 @@ const UsMeFormRef = ref()
 const UsMeForm = reactive({
   author: store.state.UserInfo.username,
   avatar: store.state.UserInfo.avatar,
+  content:JSON.stringify([]),
   introduction: ''
 })
 

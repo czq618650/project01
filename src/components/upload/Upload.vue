@@ -11,14 +11,14 @@
 <script setup>
 import { defineEmits, defineProps, computed } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
-
+import { adminurl } from '@/util/adminUrl'
 const props = defineProps({
   avatar: String
 })
 
 const emit = defineEmits(['chenzeChange'])
 
-const uploadAvatar = computed(() => (props.avatar.includes('blob') ? props.avatar : 'http://127.0.0.1:3000' + props.avatar))
+const uploadAvatar = computed(() => (props.avatar.includes('blob') ? props.avatar : adminurl + props.avatar))
 
 // 每次选完文件后的上传
 const handleChange = file => {

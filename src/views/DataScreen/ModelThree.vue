@@ -18,9 +18,15 @@
   </div>
 </template>
 <script setup>
-import { ref, reactive, onMounted, toRefs } from 'vue'
+import { ref, reactive, onMounted, toRefs, defineAsyncComponent } from 'vue'
 import axios from '@/util/axios.config'
-import Map from './chinaMap/Map.vue'
+// import Map from './chinaMap/Map.vue'
+
+const Map = defineAsyncComponent(() => import('./chinaMap/Map.vue'))
+
+const components = {
+  Map
+}
 
 const tableData = ref([])
 // 各省人数
