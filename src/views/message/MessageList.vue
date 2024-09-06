@@ -8,7 +8,7 @@
       <div class="text" v-html="item.introduction"></div>
       <div class="icon">
         <el-button type="info" :icon="ChatDotRound" circle @click="comment(item)" />
-        <el-button type="danger" :icon="Delete" circle @click="DlCmt(item)" v-if="(store.state.UserInfo.role == 1)  || (store.state.UserInfo.username == x.author)"/>
+        <el-button type="danger" :icon="Delete" circle @click="DlCmt(item)" v-if="(store.state.UserInfo.role == 1)  || (store.state.UserInfo.username == item.author)"/>
       </div>
       </div>
       <div v-if ="plqu">

@@ -17,6 +17,8 @@ module.exports = defineConfig({
   devServer:{
     // 反向代理
     // port:8003,
+    // host: 'localhost',
+    // open:true,
     proxy:{
       // 如果访问以下接口则需要代理
       "/adminapi":{

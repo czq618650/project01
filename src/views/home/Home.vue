@@ -18,7 +18,7 @@
     <el-card class="box-card">
       <template #header>
         <div class="card-header">
-          <span>公司产品</span>
+          <span>个人产品</span>
           <el-carousel v-if="loopList.length" :interval="4000" type="card" height="200px">
             <el-carousel-item v-for="item in loopList" :key="item.ID">
               <div :style="{ backgroundImage:`url(${adminurl}${item.cover})`,backgroundSize:'cover' }">
